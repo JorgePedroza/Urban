@@ -127,6 +127,8 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
         Padding(padding: EdgeInsets.only(top: 10)),
         FlatButton(
+
+          
             onPressed: () => Navigator.pushNamed(context, 'veri'),
             //()=> Navigator.of(context).pop(),
             child: Text('¿Olvidaste tu contraseña?')),

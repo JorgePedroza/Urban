@@ -3,25 +3,23 @@ import 'package:flutter/material.dart';
 class CardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ListView(
-        padding: EdgeInsets.all(20),
+    return  ListView(
+        padding: EdgeInsets.all(10),
         children: <Widget>[
-          _cardTipo1('assets/images.jpeg', 'Vergel chiveria', 'Azul',Colors.blue),
-          _cardTipo1('assets/ima1.jpeg', 'Bajadas', 'Azul',Colors.blue),
-          _cardTipo1('assets/ima2.jpeg', 'Reserva 1', 'verde', Colors.green),
-          _cardTipo1('assets/ima3.jpg', 'Amapolas', 'Blanco/amarillo', Colors.yellow),
-          _cardTipo1('assets/ima4.jpg', 'Bolivar', 'Rojo', Colors.red),
-          _cardTipo1('assets/ima5.jpeg', 'santa fe', 'verde', Colors.green),
-          _cardTipo1('assets/images.jpeg', 'Vergel chiveria', 'Azul',Colors.blue),
-          _cardTipo1('assets/ima1.jpeg', 'Bajadas', 'Azul',Colors.blue),
-          _cardTipo1('assets/ima3.jpg', 'Amapolas', 'Blanco/amarillo', Colors.yellow),
-          _cardTipo1('assets/images.jpeg', 'Vergel chiveria', 'Azul',Colors.blue),
+       //   _cardTipo1('assets/images.jpeg', 'Vergel chiveria', 'Azul',Colors.lightBlue),
+         // _cardTipo1('assets/ima1.jpeg', 'Bajadas', 'Azul',Colors.lightBlue),
+         // _cardTipo1('assets/ima2.jpeg', 'Reserva 1', 'verde', Colors.lightGreen),
+         // _cardTipo1('assets/ima3.jpg', 'Amapolas', 'Blanco/amarillo', Colors.yellowAccent),
+          //_cardTipo1('assets/ima4.jpg', 'Bolivar', 'Rojo', Colors.red),
+          //_cardTipo1('assets/ima5.jpeg', 'santa fe', 'verde', Colors.lightGreen),
+          //_cardTipo1('assets/images.jpeg', 'Vergel chiveria', 'Azul',Colors.lightBlue),
+         // _cardTipo1('assets/ima1.jpeg', 'Bajadas', 'Azul',Colors.lightBlue),
+         // _cardTipo1('assets/ima3.jpg', 'Amapolas', 'Blanco/amarillo', Colors.yellow),
+          _cardTipo1('assets/images.jpeg', 'Vergel chiveria', 'Azul',Colors.lightBlue),
           _cardTipo1('assets/ima4.jpg', 'Bolivar', 'Rojo', Colors.red),
           _cardTipo1('assets/ima3.jpg', 'Amapolas', 'Blanco/amarillo', Colors.yellow),
         ],
-      ),
-    );
+      );
   }
 
   Widget _cardTipo1(String assets, String titulo, String color,Color colorfondo ) {

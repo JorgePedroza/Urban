@@ -1,52 +1,58 @@
 import 'package:flutter/material.dart';
+import 'package:urbanbus/pages/bloc/repository.dart';
 import 'package:urbanbus/pages/card_Page.dart';
+
 
 class CamionesPage extends StatefulWidget {
   @override
   _CamionesPageState createState() => _CamionesPageState();
+
 }
 
 class _CamionesPageState extends State<CamionesPage> {
-  double largo;
+
+ Repository repo = Repository() ;
+ 
+    int i = 1;
+  
+   
   @override
   Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
-    largo = screenSize.height;
+  
+      
+    List<Widget> f = new List();
+   
+    List<Widget> _tap() {
+
+       f.add(Tab(icon: Icon(Icons.directions_bus)));
+       
+      if(repo.get()==3){
+        i=2;
+        f.add(Tab(icon: Icon(Icons.not_listed_location,color: Colors.yellow,)));
+      }else{
+        i=1;
+      }
+
+      return f;
+    }
 
     return DefaultTabController(
-      length: 2,
+      length: i,
       child: Scaffold(
-        appBar: 
-        
-        PreferredSize(
+        appBar: PreferredSize(
           preferredSize: Size.fromHeight(50.0),
           child: AppBar(
             flexibleSpace: Container(
-              decoration: _decoracion(),
+              color: Colors.blueGrey,
             ),
             automaticallyImplyLeading: false,
-            bottom: TabBar(tabs: [
-              Tab(icon: Icon(Icons.directions_bus)),
-              Tab(icon: Icon(Icons.not_listed_location)),
-            ]),
+            bottom: TabBar(tabs: _tap()),
           ),
         ),
-      body:  CardPage(),
+        body: CardPage(),
+        floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
       ),
     );
   }
-
-
-    BoxDecoration _decoracion() {
-    return BoxDecoration(
-        gradient: LinearGradient(
-            stops: [0.5, 1, 1],
-            begin: FractionalOffset.topRight,
-            end: FractionalOffset.bottomLeft,
-            colors: [
-              Color.fromRGBO(28, 75, 88, 1),
-              Color.fromRGBO(54, 148, 174, 1),
-              Colors.white
-            ]));
-  }
+  
 }

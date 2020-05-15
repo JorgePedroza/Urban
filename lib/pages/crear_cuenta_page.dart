@@ -172,8 +172,8 @@ class CrearCuentaPage extends StatelessWidget {
           filled: true,
           fillColor: Colors.white,
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-          hintText: 'Email addres',
-          labelText: 'Email',
+          hintText: '',
+          labelText: 'Date',
           suffixIcon: Icon(Icons.calendar_today),
         ),
         onChanged: (valor) {},
@@ -195,6 +195,8 @@ class CrearCuentaPage extends StatelessWidget {
       width: 250,
       child: RaisedButton(
           child: Text('Crear cuenta'),
+
+          
           onPressed: () => Navigator.pushNamed(context, 'veri')),
     );
   }

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:urbanbus/pages/camiones_page.dart';
-
+import 'package:urbanbus/pages/bloc/repository.dart';
+import 'package:urbanbus/pages/info.dart';
 import 'package:urbanbus/pages/map_google.dart';
+import 'package:urbanbus/pages/perfil_page.dart';
 
 class MapPage extends StatefulWidget {
   @override
@@ -9,142 +10,95 @@ class MapPage extends StatefulWidget {
 }
 
 class _MapPage extends State<MapPage> {
-  double largo;
-  double ancho;
-  
+  final GlobalKey<ScaffoldState> scaffoldKey = new GlobalKey<ScaffoldState>();
+
+  Repository repo = Repository();
+
   @override
   Widget build(BuildContext context) {
-    var screenSize = MediaQuery.of(context).size;
-    ancho = screenSize.width;
-    largo = screenSize.height;
     return Scaffold(
-        body: 
-        Stack(
-          children: <Widget>[
-            MapSample(),
-            
-       
-            _crearMostrarInfo(),
-          ],
-        ));
-  }
-
- 
-
-  Widget _crearMostrarInfo() {
-    return 
-
-      DraggableScrollableSheet(
-      
-          initialChildSize: 0.45,
-          minChildSize:0.05,
-          maxChildSize: 1 ,
-          builder: (BuildContext contex, scrollController) {
-
-            return Container(
-             
-                decoration: _estiloSombreado(),
-                child: ClipRRect(
-                 
-                  child: SingleChildScrollView(
-
-                    controller: scrollController,
-                    child: Column(
-                      children: <Widget>[
-                        _barraGris(),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        _buscador(),
-                        SizedBox(
-                          height: 20,
-                        ),
-                        _barraDeEspacio(),
-                        Container(
-                          
-                          height: largo,
-                        child: CamionesPage()),
-                      ],
-                    ),
-                  ),
-                ));
-          },
+      key: scaffoldKey,
+      body: Stack(
+        children: <Widget>[
+          MapSample(),
+          modCuenta(),
+          publicidad(),
+          MostrarInfo(),
+          modPerfil(context),
+          //     _crearMostrarInfo(),
+        ],
+      ),
+      drawer: PerfilPage(),
     );
   }
 
-  BoxDecoration _estiloSombreado() {
-    return BoxDecoration(
-        borderRadius: BorderRadius.vertical(top:  Radius.circular(20)),
-        color: Colors.white,
-        boxShadow: <BoxShadow>[
-          BoxShadow(
-            color: Colors.black26,
-            blurRadius: 10.0,
-            spreadRadius: 2.0,
-            offset: Offset(2.0, 2.0),
-          )
-        ]);
-  }
-
-  Widget _barraGris() {
+  Widget modCuenta() {
     return Container(
-      decoration: BoxDecoration(
-        color: Colors.black12,
-        borderRadius: BorderRadius.circular(20.0),
+      width: 50,
+      child: Column(
+        children: <Widget>[
+          SizedBox(
+            height: 40,
+          ),
+          RaisedButton(
+              color: Colors.white,
+              child: Icon(
+                Icons.star,
+                color: Colors.yellow,
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, 'cuentas');
+              }),
+        ],
       ),
-      height: 6,
-      width: 70,
     );
   }
 
-  Widget _buscador() {
-      
-
+  Widget modPerfil(context) {
     return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20.0),
-      ),
-      width: largo * 0.45
-,
-      child: TextField(
-        decoration: InputDecoration(
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-          hintText: 'Buscar',
-          suffixIcon: Icon(Icons.search),
-        ),
-        onTap: (){
-         setState(() {
-           
-         });
-        },
+      width: 50,
+      child: Column(
+        children: <Widget>[
+          SizedBox(
+            height: 100,
+          ),
+          RaisedButton(
+              color: Colors.white,
+              child: Icon(
+                Icons.person,
+                color: Colors.blueGrey,
+              ),
+              onPressed: () {
+                scaffoldKey.currentState.openDrawer();
+              }),
+        ],
       ),
     );
   }
 
-  Widget _barraDeEspacio() {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border(
-            bottom: BorderSide(
-              //
-              color: Color.fromRGBO(224, 224, 224, 0.8),
-              width: 1.0,
-            ),
-            top: BorderSide(
-              //
-              color: Color.fromRGBO(224, 224, 224, 0.8),
-              width: 1.0,
-            ),
-            left: BorderSide(color: Colors.white),
-            right: BorderSide(color: Colors.white)),
-        color: Color.fromRGBO(224, 224, 224, 0.3),
-      ),
-      width: ancho,
-      height: 7,
-    );
-  }
+  Widget publicidad() {
+
+     
+    if (repo.get() >= 2) {
 
   
-
- 
+      return Container();
+     
+    } else {
+      return Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: <Widget>[
+          SizedBox(
+            height: 90,
+          ),
+          Container(
+            height: 30,
+            width: 220,
+            child: FittedBox(
+                fit: BoxFit.fill, child: Image.asset('assets/giphy.gif')),
+          ),
+        ],
+      );
+    }
+  }
 }
