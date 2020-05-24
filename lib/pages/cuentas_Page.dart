@@ -1,6 +1,4 @@
-
 import 'package:flutter/material.dart';
-import 'package:urbanbus/pages/bloc/repository.dart';
 import 'package:urbanbus/state/context.dart';
 
 
@@ -11,11 +9,8 @@ class CuentasPage extends StatefulWidget {
 }
 
 class _CuentasPageState extends State<CuentasPage> {
+  static  Context c= new Context();
 
-
- Repository repo = Repository() ;
-
-  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,16 +27,19 @@ class _CuentasPageState extends State<CuentasPage> {
           SizedBox(
             height: 20,
           ),
+          Text('Cuenta Basica'),
           cuentaBasica(),
           boton1(),
           SizedBox(
             height: 20,
           ),
+          Text('Cuenta Bonus'),
           cuentaBonus(),
           boton2(),
           SizedBox(
             height: 20,
           ),
+          Text('Cuenta Premium'),
           cuentaPremimum(),
           boton3(),
         ],
@@ -174,10 +172,8 @@ class _CuentasPageState extends State<CuentasPage> {
 
   Widget boton1(){
     return RaisedButton( color: Colors.black38,child: Text('Obtener cuenta') ,onPressed: (){
-       setState(() {
-         
-          repo.cuentaBasica();
-         
+       setState(() {  
+      c.cambiarAcuentaBasica(context);
        });
     });
   }
@@ -185,18 +181,19 @@ class _CuentasPageState extends State<CuentasPage> {
     return RaisedButton(color: Colors.brown, child: Text('Obtener cuenta') ,onPressed: (){
 
        setState(() {
-         repo.cuentaBonus();
-         
+        c.cambiarAcuentaBonus(context);
        });
     });
   }
    Widget boton3(){
     return RaisedButton(color: Colors.yellow, child: Text('Obtener cuenta') ,onPressed: (){
       setState(() {
-    repo.cuentaPrimium();
+    c.cambiarAcuentaPremium(context);
       });
       
      
     });
   }
+
+
 }

@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 
-class MyHomePage extends StatefulWidget {
+class Login extends StatefulWidget {
   @override
   _MyHomePageState createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<Login> {
+  String password;
   double largo;
   double ancho;
 
@@ -17,8 +18,9 @@ class _MyHomePageState extends State<MyHomePage> {
     largo = screenSize.height;
 
     return Scaffold(
-      resizeToAvoidBottomInset: false,
-      body: Container(
+      
+         resizeToAvoidBottomInset: false,
+              body: Container(
         decoration: _decoracion(),
         width: ancho,
         height: largo,
@@ -33,7 +35,7 @@ class _MyHomePageState extends State<MyHomePage> {
               _salto(largo * 0.02),
               _crearPassword(),
               _salto(largo * 0.2),
-              _mostrarAlertas(context)
+              _crearCuenta(context)
             ],
           ),
         ),
@@ -86,7 +88,7 @@ class _MyHomePageState extends State<MyHomePage> {
               Icons.email,
               color: Colors.black,
             )),
-        onChanged: (valor) {
+        onChanged: (String valor) {
           setState(() {});
         },
       ),
@@ -113,7 +115,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   color: Colors.black,
                 )),
             onChanged: (valor) {
-              setState(() {});
+              setState(() {
+                
+              });
             },
           ),
         ),
@@ -121,7 +125,11 @@ class _MyHomePageState extends State<MyHomePage> {
         ClipRRect(
           borderRadius: BorderRadius.circular(25),
           child: RaisedButton(
-              onPressed: () => Navigator.pushNamed(context, 'map'),
+              onPressed: () {
+                
+                
+                 Navigator.pushNamed(context, 'map');
+                },
               child: Text(
                   '                    Iniciar sesion                    ')),
         ),
@@ -136,7 +144,8 @@ class _MyHomePageState extends State<MyHomePage> {
     );
   }
 
-  Widget _mostrarAlertas(BuildContext context) {
+  Widget _crearCuenta(BuildContext context) {
+    
     return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,

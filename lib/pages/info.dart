@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'camiones_page.dart';
 
 class MostrarInfo extends StatefulWidget {
-  MostrarInfo({Key key}) : super(key: key);
 
   @override
   _MostrarInfoState createState() => _MostrarInfoState();
@@ -17,10 +16,7 @@ class _MostrarInfoState extends State<MostrarInfo> {
         var screenSize = MediaQuery.of(context).size;
    ancho = screenSize.width;
     largo = screenSize.height;
-    return 
-
-      DraggableScrollableSheet(
-      
+    return DraggableScrollableSheet(
           initialChildSize: 0.45,
           minChildSize:0.05,
           maxChildSize: 1 ,

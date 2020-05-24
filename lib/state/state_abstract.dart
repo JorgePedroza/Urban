@@ -1,17 +1,13 @@
-
-
+import 'package:flutter/cupertino.dart';
 import 'package:urbanbus/state/context.dart';
 
-abstract class State{
+abstract class Estado {
 
 
+  void nivelDeCuentaBasica({Context context, BuildContext contexto});
 
-  void cambiarEstado(Context context);
+  void nivelDeCuentaBonus({Context context, BuildContext contexto});
 
-  int cuentaBasica(Context context);
-
-  int cuentaBonus(Context context);
-
-  int cuentaPremium(Context context);     
+  void nivelDeCuentaPremium({Context context, BuildContext contexto});     
 
 }

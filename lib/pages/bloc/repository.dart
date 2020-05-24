@@ -1,42 +1,27 @@
-import 'package:urbanbus/state/context.dart';
+class Repository {
+  int _estado =1;
 
-class Repository{
-  int _count = 1;
+  static Repository _instance = Repository._internal();
 
-static Repository _instance = Repository._internal();
+  Repository._internal();
 
-Repository._internal();
-
-factory Repository(){
-  return _instance;
-}
-
-int get(){
-  return _count;
+  factory Repository() {
+    return _instance;
   }
- void cuentaBasica(){
-  Context context= new Context();
 
- _count = context.cuentaBasica();
-  
-}
-void cuentaBonus(){
-  Context context= new Context();
+  get() {
+    return _estado;
+  }
 
-  context.camibiarCuenta();
-  _count= context.cuentaBonus();
-  
-}
-void cuentaPrimium(){
-  Context context= new Context();
+  void estadoInicial() {
+    _estado = 1;
+  }
 
-  context.camibiarCuenta();
-  context.camibiarCuenta();
-  _count= context.cuentaPremium();
-  
- 
-}
+  void quitarPublicidad() {
+    _estado = 2;
+  }
 
-
-
+  void agregarVistaTuristica() {
+    _estado = 3;
+  }
 }

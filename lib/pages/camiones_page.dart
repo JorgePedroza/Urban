@@ -4,11 +4,11 @@ import 'package:urbanbus/pages/card_Page.dart';
 
 
 class CamionesPage extends StatefulWidget {
+  
   @override
   _CamionesPageState createState() => _CamionesPageState();
 
 }
-
 class _CamionesPageState extends State<CamionesPage> {
 
  Repository repo = Repository() ;
@@ -23,16 +23,13 @@ class _CamionesPageState extends State<CamionesPage> {
     List<Widget> f = new List();
    
     List<Widget> _tap() {
-
        f.add(Tab(icon: Icon(Icons.directions_bus)));
-       
       if(repo.get()==3){
         i=2;
         f.add(Tab(icon: Icon(Icons.not_listed_location,color: Colors.yellow,)));
       }else{
         i=1;
       }
-
       return f;
     }
 
@@ -50,9 +47,9 @@ class _CamionesPageState extends State<CamionesPage> {
           ),
         ),
         body: CardPage(),
-        floatingActionButtonLocation: FloatingActionButtonLocation.startTop,
+        
       ),
     );
   }
-  
+
 }

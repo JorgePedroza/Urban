@@ -81,7 +81,6 @@ class _MapPage extends State<MapPage> {
      
     if (repo.get() >= 2) {
 
-  
       return Container();
      
     } else {

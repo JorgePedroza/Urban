@@ -9,12 +9,11 @@ import 'package:urbanbus/pages/verificacion_page.dart';
 
 Map<String, WidgetBuilder> getRoutes() {
   return  <String, WidgetBuilder>{
-    'logeo': (BuildContext context) => MyHomePage(),
-      'map': (BuildContext context) => MapPage(),
-    'crear': (BuildContext context) => CrearCuentaPage(),
-     'veri':  (BuildContext context) => VerificacionPage(),
-     'google': (BuildContext context) => MapSample(),
+       'logeo': (BuildContext context) => Login(),
+         'map': (BuildContext context) => MapPage(),
+       'crear': (BuildContext context) => CrearCuentaPage(),
+        'veri':  (BuildContext context)=> VerificacionPage(),
+      'google': (BuildContext context) => MapSample(),
      'cuentas': (BuildContext context) => CuentasPage(),
-
   };
 }

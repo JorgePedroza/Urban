@@ -1,28 +1,26 @@
+import 'package:flutter/cupertino.dart';
 import 'package:urbanbus/state/cuentaBasica.dart';
 import 'package:urbanbus/state/state_abstract.dart';
 
 class Context {
+  Estado _state;
 
-State state;  
+  Context() {
+    this.setState(new CuentaBasica());
+  }
+ void setState(Estado state, ) {
+    _state = state;
+  }
 
-      Context(){
-        this.setState(new CuentaBasica());
-      }
+ void  cambiarAcuentaBasica(BuildContext contexto) {
+  _state.nivelDeCuentaBasica(context: this, contexto: contexto);  
+  }
 
-    setState (State sta){
-       state = sta;
-    }
-   int cuentaBasica(){
-   return  state.cuentaBasica(this);
-   }
-   int cuentaBonus(){
-    return state.cuentaBonus(this);
-   }
-   int cuentaPremium(){
-     return state.cuentaPremium(this);
-   }
-   void camibiarCuenta(){
-     state.cambiarEstado(this);
-   }
+ void  cambiarAcuentaBonus(BuildContext contexto) {
+  _state.nivelDeCuentaBonus(context: this, contexto: contexto);
+  }
 
+ void  cambiarAcuentaPremium(BuildContext contexto) {
+   _state.nivelDeCuentaPremium(context: this, contexto: contexto);
+  }
 }
