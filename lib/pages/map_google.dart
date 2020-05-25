@@ -6,25 +6,25 @@ import 'package:urbanbus/pages/Puntos_Ruta.dart';
 
 class MapSample extends StatefulWidget {
   @override
-  State<MapSample> createState() => MapSampleState();
+  State<MapSample> createState() =>_MapSampleState();  
 }
 
-class MapSampleState extends State<MapSample> {
+class _MapSampleState extends State<MapSample> {
   static PuntosMap pm = PuntosMap();
 
    ControllGoogle g = ControllGoogle();
 
   final CameraPosition _posicionInicial = CameraPosition(
     target: LatLng(19.1874195, -96.1695044),
-    zoom: 16.4746,
+    zoom: 18.4746,
   );
 
   @override
   Widget build(BuildContext context) {
-        
-   ac();
+      
        return new Scaffold(
          body: GoogleMap(
+           minMaxZoomPreference: MinMaxZoomPreference(10, 20),
            polylines: Set<Polyline>.of(<Polyline>[
              Polyline(
                onTap: () {
@@ -34,7 +34,7 @@ class MapSampleState extends State<MapSample> {
                },
                polylineId: PolylineId('2'),
                consumeTapEvents: true,
-               color: Colors.red,
+               color: Colors.blue,
                width: 5,
                points: _createPoints(),
              )
@@ -51,6 +51,7 @@ class MapSampleState extends State<MapSample> {
            },
          ),
          floatingActionButton: _crarBotonLocalitation(),
+         
        );
      }
    
@@ -73,6 +74,7 @@ class MapSampleState extends State<MapSample> {
                      pm.deletePoints();
                      print(pm.puntos());
                    }),
+                   
              ],
            ),
          ],
@@ -109,12 +111,5 @@ class MapSampleState extends State<MapSample> {
        return points;
      }
    
-     void ac() {
-       if(pm.get()==1){
 
-         setState(() {
-           
-         });
-       }
-     }
 }

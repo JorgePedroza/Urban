@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:urbanbus/ModuloUsuario/Cuentas.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -6,7 +7,9 @@ class Login extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<Login> {
+  final key = new GlobalKey<ScaffoldState>();
   String password;
+  String telefono;
   double largo;
   double ancho;
 
@@ -18,9 +21,9 @@ class _MyHomePageState extends State<Login> {
     largo = screenSize.height;
 
     return Scaffold(
-      
-         resizeToAvoidBottomInset: false,
-              body: Container(
+      key: key,
+      resizeToAvoidBottomInset: false,
+      body: Container(
         decoration: _decoracion(),
         width: ancho,
         height: largo,
@@ -33,7 +36,7 @@ class _MyHomePageState extends State<Login> {
               _salto(largo * 0.02),
               _crearEmail(),
               _salto(largo * 0.02),
-              _crearPassword(),
+              _crearPassword(key),
               _salto(largo * 0.2),
               _crearCuenta(context)
             ],
@@ -89,13 +92,15 @@ class _MyHomePageState extends State<Login> {
               color: Colors.black,
             )),
         onChanged: (String valor) {
-          setState(() {});
+          setState(() {
+            telefono = valor;
+          });
         },
       ),
     );
   }
 
-  Widget _crearPassword() {
+  Widget _crearPassword(key) {
     return Column(
       children: <Widget>[
         Padding(
@@ -116,7 +121,7 @@ class _MyHomePageState extends State<Login> {
                 )),
             onChanged: (valor) {
               setState(() {
-                
+                password = valor;
               });
             },
           ),
@@ -126,17 +131,21 @@ class _MyHomePageState extends State<Login> {
           borderRadius: BorderRadius.circular(25),
           child: RaisedButton(
               onPressed: () {
-                
-                
-                 Navigator.pushNamed(context, 'map');
-                },
+                Cuenta cuenta = Cuenta();
+
+                if (cuenta.iniciarSesion(telefono, password)) {
+                  Navigator.pushNamed(context, 'map');
+                } else {
+                  key.currentState.showSnackBar(SnackBar(
+                      content: new Text(
+                          "Numero de telefono o la contraseña son incorrectos")));
+                }
+              },
               child: Text(
                   '                    Iniciar sesion                    ')),
         ),
         Padding(padding: EdgeInsets.only(top: 10)),
         FlatButton(
-
-          
             onPressed: () => Navigator.pushNamed(context, 'veri'),
             //()=> Navigator.of(context).pop(),
             child: Text('¿Olvidaste tu contraseña?')),
@@ -145,7 +154,6 @@ class _MyHomePageState extends State<Login> {
   }
 
   Widget _crearCuenta(BuildContext context) {
-    
     return Container(
       child: Column(
         mainAxisAlignment: MainAxisAlignment.end,

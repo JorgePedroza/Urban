@@ -4,13 +4,15 @@ import 'package:urbanbus/pages/card_Page.dart';
 
 
 class CamionesPage extends StatefulWidget {
+  final Function function;
+  CamionesPage({Key key, this.function}) : super(key: key);
   
   @override
   _CamionesPageState createState() => _CamionesPageState();
 
 }
 class _CamionesPageState extends State<CamionesPage> {
-
+ final GlobalKey<_CamionesPageState> _key = GlobalKey();
  Repository repo = Repository() ;
  
     int i = 1;
@@ -46,10 +48,20 @@ class _CamionesPageState extends State<CamionesPage> {
             bottom: TabBar(tabs: _tap()),
           ),
         ),
-        body: CardPage(),
-        
-      ),
-    );
+        body: CardPage(
+          
+                key: _key,
+                function: methodInParent,
+                              
+                
+                        ),
+                        
+                      ),
+                    );
+                  }
+                
+                
+                  methodInParent() {
+                    widget.function();
   }
-
 }

@@ -6,7 +6,7 @@ class ControllGoogle{
 
   static Completer<GoogleMapController> _controller = Completer();
 
-get(){
+Completer<GoogleMapController> get(){
 
 return _controller;
 }

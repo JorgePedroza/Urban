@@ -2,13 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:urbanbus/pages/Controll.dart';
 import 'package:urbanbus/pages/Puntos_Ruta.dart';
+import 'package:urbanbus/pages/map_google.dart';
 
 class CardPage extends StatefulWidget {
+ final Function function;
+  CardPage({Key key, this.function}) : super(key: key);
   @override
   CardPages createState() => CardPages();
+
 }
 
 class CardPages extends State<CardPage> {
+  
   static PuntosMap pm = PuntosMap();
 
   static ControllGoogle g = ControllGoogle();
@@ -64,8 +69,10 @@ class CardPages extends State<CardPage> {
                   subtitle: Text('Color dominante:$color'),
                   onTap: () {
                     setState(() {
-                      _current_location();
-                      pm.createPoints();
+                       pm.createPoints();
+                      widget.function();  
+                    _current_location();
+                   
                     });
                   },
                 ),
@@ -78,10 +85,14 @@ class CardPages extends State<CardPage> {
   }
 
   void _current_location() async {
+    
     final GoogleMapController controller = await g.get().future;
     setState(() {
+     
+      
       controller.animateCamera(CameraUpdate.newCameraPosition(CameraPosition(
           bearing: 0, target: LatLng(19.1874195, -96.1695044), zoom: 15)));
     });
+    
   }
 }
