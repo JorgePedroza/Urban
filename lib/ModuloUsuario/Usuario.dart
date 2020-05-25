@@ -7,6 +7,7 @@ class Usuario {
   String _tipo;
 
 
+Usuario();
  set setIdUsuario(int id) {
     this._id = id;
   }

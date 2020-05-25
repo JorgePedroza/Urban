@@ -138,4 +138,33 @@ void dialogoDeAlertasPremium(BuildContext context,) {
         });
   }
 
+void alertaDeContrato(BuildContext context,) {
+    showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (context) {
+          return AlertDialog(
+            content: Column(
+              children: <Widget>[
+                Text('Contrato UrbanBus'),
+              
+              ],
+            ),
+            actions: <Widget>[
+              FlatButton(
+                onPressed: ()=> Navigator.of(context).pop(),
+                 child: Text('Cancelar')
+              ),
+              FlatButton(
+                onPressed: ()=> Navigator.of(context).pop(),
+                 child: Text('Aceptar')
+              )
+            ],
+          );
+        });
+
+
+        
+  }
+
   

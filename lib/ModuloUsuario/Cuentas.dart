@@ -1,10 +1,13 @@
 
 import 'package:urbanbus/AccesoDatos/UsuarioDAO.dart';
-import 'package:urbanbus/Model/Usuario.dart';
+import 'package:urbanbus/ModuloUsuario/Usuario.dart';
+
 
 class Cuenta {
   Usuario usuario = Usuario();
   UsuarioDAO usuarioDAO = UsuarioDAO();
+
+
   Usuario get getUsuario {
     return usuario;
   }
@@ -13,7 +16,8 @@ class Cuenta {
 usu.setTelefonoUsuario = telefono;
 usu.setPasswordUsuario = password; 
    this.usuario = usuarioDAO.buscar(usu);
-    if(usu.password != this.usuario.password){
+    if(usu.getPasswordUsuario != this.usuario.getPasswordUsuario){
+      
       return false;
     }else{
       return true;

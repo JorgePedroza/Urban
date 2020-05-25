@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:urbanbus/pages/alert_pages.dart';
 
-class CrearCuentaPage extends StatelessWidget {
+class CrearCuentaPage extends StatefulWidget {
+  @override
+  _CrearCuenta createState() => _CrearCuenta();
+}
 
-  
+class _CrearCuenta extends State<CrearCuentaPage> {
+  bool _terminos = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,57 +16,67 @@ class CrearCuentaPage extends StatelessWidget {
       ),
       body: Container(
         child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              SizedBox(
-                height: 20,
-              ),
-              _crearTexto("Nombre y apelidos"),
-              SizedBox(
-                height: 5,
-              ),
-              _pedirNombre(),
-              SizedBox(
-                height: 20,
-              ),
-              _crearTexto("Correo electronico"),
-              SizedBox(
-                height: 5,
-              ),
-              _crearEmail(),
-              SizedBox(
-                height: 20,
-              ),
-              _crearTexto("Contraseña"),
-              SizedBox(
-                height: 5,
-              ),
-              _crearPassword(),
-              SizedBox(
-                height: 20,
-              ),
-              _crearTexto("Confirmar contraseña"),
-              SizedBox(
-                height: 5,
-              ),
-              _crearPassword(),
-              SizedBox(
-                height: 20,
-              ),
-              _crearTexto("Fecha de nacimiento"),
-              SizedBox(
-                height: 5,
-              ),
-              _crearFecha(),
-              SizedBox(
-                height: 20,
-              ),
-              _crearTerminos(),
-              SizedBox(
-                height: 20,
-              ),
-              _crearBoton(context),
-            ],
+          child: SingleChildScrollView(
+            child: Column(
+              children: <Widget>[
+                SizedBox(
+                  height: 20,
+                ),
+                _crearTexto("Nombre y apelidos"),
+                SizedBox(
+                  height: 5,
+                ),
+                _pedirNombre(),
+                SizedBox(
+                  height: 20,
+                ),
+                _crearTexto("Numero Telefonico"),
+                SizedBox(
+                  height: 5,
+                ),
+                _crearNumeroTelefonico(),
+                SizedBox(
+                  height: 20,
+                ),
+                _crearTexto("Correo electronico"),
+                SizedBox(
+                  height: 5,
+                ),
+                _crearEmail(),
+                SizedBox(
+                  height: 20,
+                ),
+                _crearTexto("Contraseña"),
+                SizedBox(
+                  height: 5,
+                ),
+                _crearPassword(),
+                SizedBox(
+                  height: 20,
+                ),
+                _crearTexto("Confirmar contraseña"),
+                SizedBox(
+                  height: 5,
+                ),
+                _crearPassword(),
+                SizedBox(
+                  height: 20,
+                ),
+                _crearTexto("Fecha de nacimiento"),
+                SizedBox(
+                  height: 5,
+                ),
+                _crearFecha(),
+                SizedBox(
+                  height: 20,
+                ),
+                _crearTerminos(context),
+                SizedBox(
+                  height: 20,
+                ),
+                _crearBoton(context),
+              ],
+            ),
           ),
         ),
       ),
@@ -72,38 +87,39 @@ class CrearCuentaPage extends StatelessWidget {
     return Container(
       child: Padding(
         padding: const EdgeInsets.only(left: 8, right: 8),
-        child: Row(
-          children: <Widget>[
-            Flexible(
-              child: TextField(
-                cursorColor: Colors.white,
-                keyboardType: TextInputType.text,
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20)),
-                  labelText: 'Nombre/s',
-                ),
-                onChanged: (valor) {},
-              ),
-            ),
-            Flexible(
-              child: TextField(
-                cursorColor: Colors.white,
-                keyboardType: TextInputType.text,
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.white,
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(20)),
-                  labelText: 'Apellidos',
-                ),
-                onChanged: (valor) {},
-              ),
-            ),
-          ],
+        child: TextField(
+          cursorColor: Colors.white,
+          keyboardType: TextInputType.text,
+          decoration: InputDecoration(
+            filled: true,
+            fillColor: Colors.white,
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+            labelText: 'Nombre/s',
+            suffixIcon: Icon(Icons.person_pin),
+          ),
+          onChanged: (valor) {},
         ),
+      ),
+    );
+  }
+
+  Widget _crearNumeroTelefonico() {
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 8),
+      child: TextField(
+        cursorColor: Colors.black,
+        keyboardType: TextInputType.number,
+        decoration: InputDecoration(
+          filled: true,
+          fillColor: Colors.white,
+          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+          hintText: 'Telephone number',
+          labelText: 'Número Telefónico',
+          suffixIcon: Icon(Icons.phone_iphone),
+        ),
+        onChanged: (String valor) {
+          setState(() {});
+        },
       ),
     );
   }
@@ -183,12 +199,29 @@ class CrearCuentaPage extends StatelessWidget {
     );
   }
 
-  Widget _crearTerminos() {
-    return CheckboxListTile(
-      title: Text(
-          'Al crear esta cuenta esta aceptando los terminos y condiciones de la empresa UrbanBus.'),
-      value: false,
-      onChanged: (bool value) {},
+  Widget _crearTerminos(BuildContext context) {
+    return Stack(
+      children: <Widget>[
+        
+        CheckboxListTile(
+          title: Text(
+              'Al crear esta cuenta esta aceptando los \n                                            de la empresa UrbanBus.'),
+          value: _terminos,
+          onChanged: (bool value) {
+            setState(() {
+              _terminos = value;
+            });
+          },
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(vertical: 4 ),
+          child: FlatButton(
+                    onPressed: () {alertaDeContrato(context);
+                    
+                    },
+                    child: Text('Terminos y Condiciones',style: TextStyle(fontSize: 16),)),
+        ),
+      ],
     );
   }
 
@@ -197,9 +230,38 @@ class CrearCuentaPage extends StatelessWidget {
       width: 250,
       child: RaisedButton(
           child: Text('Crear cuenta'),
-
-          
           onPressed: () => Navigator.pushNamed(context, 'veri')),
     );
+  }
+
+
+  void alertaDeContrato(BuildContext context,) {
+    showDialog(
+        context: context,
+        barrierDismissible: true,
+        builder: (context) {
+          return AlertDialog(
+            content: Column(
+              children: <Widget>[
+                Text('Contrato UrbanBus'),
+              
+              ],
+            ),
+            actions: <Widget>[
+              FlatButton(
+                onPressed: ()=> Navigator.of(context).pop(),
+                 child: Text('Cancelar')
+              ),
+              FlatButton(
+                onPressed: (){Navigator.of(context).pop();
+                
+                setState(() {
+                  _terminos=true;
+                });},
+                 child: Text('Aceptar')
+              )
+            ],
+          );
+        });
   }
 }

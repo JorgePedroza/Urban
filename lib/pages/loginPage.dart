@@ -8,36 +8,39 @@ class Login extends StatefulWidget {
 
 class _MyHomePageState extends State<Login> {
   final key = new GlobalKey<ScaffoldState>();
-  String password;
-  String telefono;
-  double largo;
-  double ancho;
-
   final backGroundColor = Colors.white;
+  String _password;
+  String _telefono;
+  double _largo;
+  double _ancho;
+
   @override
   Widget build(BuildContext context) {
     var screenSize = MediaQuery.of(context).size;
-    ancho = screenSize.width;
-    largo = screenSize.height;
+    _ancho = screenSize.width;
+    _largo = screenSize.height;
 
     return Scaffold(
       key: key,
       resizeToAvoidBottomInset: false,
       body: Container(
         decoration: _decoracion(),
-        width: ancho,
-        height: largo,
+        width: _ancho,
+        height: _largo,
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              _salto(largo * 0.15),
+              _rellenarEspacio(_largo * 0.15),
               _crearIcono(),
               _crearTitulo(),
-              _salto(largo * 0.02),
-              _crearEmail(),
-              _salto(largo * 0.02),
+              _rellenarEspacio(_largo * 0.02),
+              _crearNumeroTelefonico(),
+              _rellenarEspacio(_largo * 0.02),
               _crearPassword(key),
-              _salto(largo * 0.2),
+             _rellenarEspacio(_largo * 0.04),
+              _creariniciarSesion(),
+              _crearOlvidasteTuContrasena(),
+              _rellenarEspacio(_largo * 0.22),
               _crearCuenta(context)
             ],
           ),
@@ -63,7 +66,7 @@ class _MyHomePageState extends State<Login> {
     return Icon(
       Icons.location_on,
       size: 100,
-      color: Colors.blueAccent,
+      color: Color.fromRGBO(42, 129, 194, 1),
     );
   }
 
@@ -74,26 +77,26 @@ class _MyHomePageState extends State<Login> {
     );
   }
 
-  Widget _crearEmail() {
+  Widget _crearNumeroTelefonico() {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 8),
       child: TextField(
-        cursorColor: Colors.white,
-        keyboardType: TextInputType.emailAddress,
+        cursorColor: Colors.black,
+        keyboardType: TextInputType.number,
         decoration: InputDecoration(
             filled: true,
             fillColor: Colors.white,
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-            hintText: 'Email addres',
-            labelText: 'Email',
-            suffixIcon: Icon(Icons.alternate_email),
+            hintText: 'Telephone number',
+            labelText: 'Número Telefónico',
+            suffixIcon: Icon(Icons.phone_iphone),
             icon: Icon(
-              Icons.email,
+              Icons.phone,
               color: Colors.black,
             )),
         onChanged: (String valor) {
           setState(() {
-            telefono = valor;
+            _telefono = valor;
           });
         },
       ),
@@ -101,56 +104,57 @@ class _MyHomePageState extends State<Login> {
   }
 
   Widget _crearPassword(key) {
-    return Column(
-      children: <Widget>[
-        Padding(
-          padding: EdgeInsets.symmetric(horizontal: 8),
-          child: TextField(
-            obscureText: true,
-            decoration: InputDecoration(
-                filled: true,
-                fillColor: Colors.white,
-                border:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-                hintText: 'Contraseña',
-                labelText: 'password',
-                suffixIcon: Icon(Icons.no_encryption),
-                icon: Icon(
-                  Icons.lock,
-                  color: Colors.black,
-                )),
-            onChanged: (valor) {
-              setState(() {
-                password = valor;
-              });
-            },
-          ),
-        ),
-        _salto(40),
-        ClipRRect(
-          borderRadius: BorderRadius.circular(25),
-          child: RaisedButton(
-              onPressed: () {
-                Cuenta cuenta = Cuenta();
-
-                if (cuenta.iniciarSesion(telefono, password)) {
-                  Navigator.pushNamed(context, 'map');
-                } else {
-                  key.currentState.showSnackBar(SnackBar(
-                      content: new Text(
-                          "Numero de telefono o la contraseña son incorrectos")));
-                }
-              },
-              child: Text(
-                  '                    Iniciar sesion                    ')),
-        ),
-        Padding(padding: EdgeInsets.only(top: 10)),
-        FlatButton(
-            onPressed: () => Navigator.pushNamed(context, 'veri'),
-            //()=> Navigator.of(context).pop(),
-            child: Text('¿Olvidaste tu contraseña?')),
-      ],
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 8),
+      child: TextField(
+        cursorColor: Colors.black,
+        decoration: InputDecoration(
+            filled: true,
+            fillColor: Colors.white,
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+            hintText: 'Password',
+            labelText: 'Contraseña',
+            suffixIcon: Icon(Icons.no_encryption),
+            icon: Icon(
+              Icons.lock,
+              color: Colors.black,
+            )),
+        onChanged: (valor) {
+          setState(() {
+            _password = valor;
+          });
+        },
+      ),
     );
+  }
+
+  Widget _creariniciarSesion() {
+    return Container(
+      width: 240,
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(25),
+        child: RaisedButton(
+          child:Text('Iniciar sesión'),
+            onPressed: () {
+              Cuenta cuenta = Cuenta();
+              FocusScopeNode currentFocus = FocusScope.of(context);
+              currentFocus.unfocus();
+              if (cuenta.iniciarSesion(_telefono, _password)) {
+                Navigator.pushNamed(context, 'map');
+              } else {
+                key.currentState.showSnackBar(
+                SnackBar(
+                content: new Text("Número de teléfono o contraseña son incorrectas.")));
+              }
+            },),
+      ),
+    );
+  }
+
+  Widget _crearOlvidasteTuContrasena() {
+    return FlatButton(
+        onPressed: () => Navigator.pushNamed(context, 'numero'),
+        child: Text('¿Olvidaste tu contraseña?'));
   }
 
   Widget _crearCuenta(BuildContext context) {
@@ -164,7 +168,6 @@ class _MyHomePageState extends State<Login> {
               Text('¿Aun no tienes una cuenta?'),
               FlatButton(
                   onPressed: () => Navigator.pushNamed(context, 'crear'),
-                  //()=> Navigator.of(context).pop(),
                   child: Text('Crear cuenta')),
             ],
           )
@@ -173,7 +176,7 @@ class _MyHomePageState extends State<Login> {
     );
   }
 
-  Widget _salto(double espacio) {
+  Widget _rellenarEspacio(double espacio) {
     return Container(
       padding: EdgeInsets.only(top: espacio),
     );

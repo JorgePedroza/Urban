@@ -2,35 +2,35 @@ import 'package:flutter/material.dart';
 import 'package:urbanbus/pages/bloc/repository.dart';
 import 'package:urbanbus/pages/card_Page.dart';
 
-
 class CamionesPage extends StatefulWidget {
   final Function function;
   CamionesPage({Key key, this.function}) : super(key: key);
-  
+
   @override
   _CamionesPageState createState() => _CamionesPageState();
-
 }
+
 class _CamionesPageState extends State<CamionesPage> {
- final GlobalKey<_CamionesPageState> _key = GlobalKey();
- Repository repo = Repository() ;
- 
-    int i = 1;
-  
-   
+  final GlobalKey<_CamionesPageState> _key = GlobalKey();
+  Repository repo = Repository();
+
+  int i = 1;
+
   @override
   Widget build(BuildContext context) {
-  
-      
     List<Widget> f = new List();
-   
+
     List<Widget> _tap() {
-       f.add(Tab(icon: Icon(Icons.directions_bus)));
-      if(repo.get()==3){
-        i=2;
-        f.add(Tab(icon: Icon(Icons.not_listed_location,color: Colors.yellow,)));
-      }else{
-        i=1;
+      f.add(Tab(icon: Icon(Icons.directions_bus)));
+      if (repo.get() == 3) {
+        i = 2;
+        f.add(Tab(
+            icon: Icon(
+          Icons.not_listed_location,
+          color: Colors.yellow,
+        )));
+      } else {
+        i = 1;
       }
       return f;
     }
@@ -49,19 +49,14 @@ class _CamionesPageState extends State<CamionesPage> {
           ),
         ),
         body: CardPage(
-          
-                key: _key,
-                function: methodInParent,
-                              
-                
-                        ),
-                        
-                      ),
-                    );
-                  }
-                
-                
-                  methodInParent() {
-                    widget.function();
+          key: _key,
+          function: methodInParent,
+        ),
+      ),
+    );
+  }
+
+  methodInParent() {
+    widget.function();
   }
 }

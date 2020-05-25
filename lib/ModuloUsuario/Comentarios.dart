@@ -1,4 +1,6 @@
-import 'package:urbanbus/Model/Usuario.dart';
+
+
+import 'package:urbanbus/ModuloUsuario/Usuario.dart';
 
 class Comentarios{
 String _descripcion;

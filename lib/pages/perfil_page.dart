@@ -62,45 +62,68 @@ class _PerfilPageState extends State<PerfilPage> {
     return Container(
       child: Column(
         children: <Widget>[
-          SizedBox(
-            height: 20,
-          ),
-          Text(
-            "Mi perfil",
-            style: TextStyle(fontSize: 28),
-            
-          ),
-          SizedBox(
-            height: 40,
-          ),
-          Text(
-            "Cuenta",
-            style: TextStyle(fontSize: 28),
-          ),
-          SizedBox(
-            height: 40,
-          ),
-          Text(
-            "Privcidad",
-            style: TextStyle(fontSize: 28),
-          ),
-          SizedBox(
-            height: 40,
-          ),
-          Text(
-            "Configuracion",
-            style: TextStyle(fontSize: 28),
-          ),
-          SizedBox(
-            height: 40,
-          ),
-          Text(
-            "Ayuda",
-            style: TextStyle(fontSize: 28),
-          ),
-          SizedBox(
-            height: 40,
-          ),
+          SizedBox(height: 35,),
+          FlatButton(
+        onPressed: () => Navigator.pushNamed(context, 'miperfil'),
+        child:
+         Row(
+           children: <Widget>[
+            SizedBox(width: 43,),
+             Icon(Icons.accessibility_new,size: 40,),
+                SizedBox(width: 10,),
+             Text('Mi perfil', style: TextStyle( fontSize: 35,),),
+           ],
+         )),
+         SizedBox(height: 35,),
+         FlatButton(
+        onPressed: () => Navigator.pushNamed(context, 'terminos'),
+        child:
+         Row(
+           children: <Widget>[
+            SizedBox(width: 38,),
+             Icon(Icons.account_balance_wallet ,size: 40,),
+                SizedBox(width: 10,),
+             Text('Terminos', style: TextStyle( fontSize: 35,),),
+           ],
+         )),
+         SizedBox(height: 35,),
+          FlatButton(
+        onPressed: () => Navigator.pushNamed(context, 'configuracion'),
+        child:
+         Row(
+           children: <Widget>[
+            SizedBox(width: 10,),
+             Icon(Icons.build,size: 30,),
+                SizedBox(width: 10,),
+             Text('Configuracion', style: TextStyle( fontSize: 35,),),
+           ],
+         )),
+         SizedBox(height: 35),
+         FlatButton(
+        onPressed: () => Navigator.pushNamed(context, 'foro'),
+        child:
+         Row(
+           children: <Widget>[
+            SizedBox(width: 80,),
+             Icon(Icons.chat,size: 30,),
+                SizedBox(width: 10,),
+             Text('Foro', style: TextStyle( fontSize: 35,),),
+           ],
+         )),
+         SizedBox(height: 35,),
+          FlatButton(
+        onPressed: () => Navigator.pushNamed(context, 'ayuda'),
+        child:
+         Row(
+           children: <Widget>[
+            SizedBox(width: 65,),
+             Icon(Icons.help_outline,size: 30,),
+                SizedBox(width: 10,),
+             Text('Ayuda', style: TextStyle( fontSize: 35,),),
+           ],
+         )),
+          
+        
           Text(
             "$per",
             style: TextStyle(fontSize: 28, color: Colors.red),
