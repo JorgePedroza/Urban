@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:urbanbus/pages/alert_pages.dart';
+import 'package:urbanbus/pages/terminos_page.dart';
 
 class CrearCuentaPage extends StatefulWidget {
   @override
@@ -237,31 +238,13 @@ class _CrearCuenta extends State<CrearCuentaPage> {
 
   void alertaDeContrato(BuildContext context,) {
     showDialog(
+      
         context: context,
         barrierDismissible: true,
         builder: (context) {
-          return AlertDialog(
-            content: Column(
-              children: <Widget>[
-                Text('Contrato UrbanBus'),
-              
-              ],
-            ),
-            actions: <Widget>[
-              FlatButton(
-                onPressed: ()=> Navigator.of(context).pop(),
-                 child: Text('Cancelar')
-              ),
-              FlatButton(
-                onPressed: (){Navigator.of(context).pop();
-                
-                setState(() {
-                  _terminos=true;
-                });},
-                 child: Text('Aceptar')
-              )
-            ],
-          );
+          return TerminosPage();
+    
+      
         });
   }
 }

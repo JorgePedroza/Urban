@@ -26,6 +26,7 @@ class _CamionesPageState extends State<CamionesPage> {
         
         Tab(icon: Icon(Icons.directions_bus)));
       if (repo.get() == 3) {
+        
         i = 2;
         f.add(Tab(
             icon: Icon(
@@ -33,6 +34,7 @@ class _CamionesPageState extends State<CamionesPage> {
           color: Colors.yellow,
         )));
       } else {
+        paginaActual = 0;
         i = 1;
       }
       return f;
@@ -61,7 +63,9 @@ class _CamionesPageState extends State<CamionesPage> {
     );
   }
  Widget _callPage( int paginaActual ) {
-
+setState(() {
+  
+});
     switch( paginaActual ) {
 
       case 0: return CardPage(

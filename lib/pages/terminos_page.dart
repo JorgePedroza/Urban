@@ -20,7 +20,7 @@ class _TerminosPageState extends State<TerminosPage> {
   }
 
   loadDocument() async {
-    document = await PDFDocument.fromAsset('assets/sample.pdf');
+    document = await PDFDocument.fromAsset('assets/contrato.pdf');
     setState(() => _isLoading = false);
   }
 

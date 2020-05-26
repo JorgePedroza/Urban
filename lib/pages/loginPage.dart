@@ -107,8 +107,10 @@ class _MyHomePageState extends State<Login> {
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 8),
       child: TextField(
+        obscureText: true,
         cursorColor: Colors.black,
         decoration: InputDecoration(
+
             filled: true,
             fillColor: Colors.white,
             border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),

@@ -29,15 +29,21 @@ class _nameState extends State<MiPerfilPage> {
                 ),
                 _crearTexto('Nombre del perfil'),
                 _pedirNombre(),
+                Divider(color: Colors.black54,),
+                _textoFijo('Edad: ','21'),
+                Divider(color: Colors.black54),
+                _textoFijo('Nombre : ', 'Jorge Antonio pedroza Rendon'),
+                Divider(color: Colors.black54),
+                _textoFijo('Fecha de nacimiento: ', '17/02/1999'),
+                Divider(color: Colors.black54),
+                _crearTexto('Leyenda'),
+                _leyenda(),
                 _crearTexto('Cambiar contraseña'),
                 _crearPassword(),
                 _crearTexto('Confirmar'),
                 _crearPassword(),
-                _crearTexto('Cambiar Email'),
-                _crearEmail(),
-                _crearTexto('Cambiar numero de telefono'),
-                _crearNumeroTelefonico(),
                 Divider(color: Colors.black,),
+                
                 _crearTexto('Confirmar cambios'),
                 _confirmarCambios(),
                 _crearBoton(context)
@@ -111,46 +117,8 @@ Widget _crearPassword() {
       ),
     );
   }
-  Widget _crearEmail() {
-    return Padding(
-    padding: const EdgeInsets.only(left: 20, right: 20, top: 7, bottom: 20),
-      child: TextFormField(
-             initialValue: 'Jorge_p@hotmail.com',
-        cursorColor: Colors.white,
-        keyboardType: TextInputType.emailAddress,
-        decoration: InputDecoration(
-          filled: true,
-          fillColor: Colors.white,
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-          hintText: 'Email addres',
-          labelText: 'Email',
-          suffixIcon: Icon(Icons.edit),
-        ),
-        onChanged: (valor) {},
-      ),
-    );
-  }
-   Widget _crearNumeroTelefonico() {
-    return Padding(
-      padding: const EdgeInsets.only(left: 20, right: 20, top: 7, bottom: 20),
-      child: TextFormField(
-             initialValue: '2291370546',
-        cursorColor: Colors.black,
-        keyboardType: TextInputType.number,
-        decoration: InputDecoration(
-          filled: true,
-          fillColor: Colors.white,
-          border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
-          hintText: 'Telephone number',
-          labelText: 'Número Telefónico',
-          suffixIcon: Icon(Icons.edit),
-        ),
-        onChanged: (String valor) {
-          setState(() {});
-        },
-      ),
-    );
-  }
+  
+   
   Widget _confirmarCambios() {
     return Container(
       child: Padding(
@@ -174,9 +142,51 @@ Widget _crearPassword() {
     return Container(
       width: 250,
       child: RaisedButton(
-          child: Text('Crear cuenta'),
+          child: Text('Confirmar'),
           onPressed: () => Navigator.pop(context)),
     );
   }
+Widget _textoFijo(String categoria,String respuesta){
 
+return Container(
+  child:   Padding(
+       padding: const EdgeInsets.only(left: 20, right: 20, top: 7, bottom: 20),
+    child: Row(
+      children: <Widget>[
+        RichText(
+          text: TextSpan(
+            text: categoria,
+            style: TextStyle(fontSize: 15, color: Colors.black),
+            children: <TextSpan>[
+              TextSpan(text: respuesta, style: TextStyle(fontWeight: FontWeight.bold)),
+        
+            ],
+          ),
+        ),
+      ],
+    ),
+  ),
+);
+}
+Widget _leyenda() {
+    return Padding(
+       padding: const EdgeInsets.only(left: 20, right: 20, top: 7, bottom: 20),
+        child: TextFormField(
+           keyboardType: TextInputType.text,
+             initialValue: "Chale no puedo salir 🥺🥺😭",
+          decoration: InputDecoration(
+            contentPadding: const EdgeInsets.symmetric(vertical: 70.0),
+            
+            filled: true,
+            fillColor: Colors.white,
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(20)),
+            labelText: 'Comenta algo que los demas puedan ver',
+            suffixIcon: Icon(Icons.edit),
+          ),
+          onChanged: (valor) {
+           print(valor);
+          },
+        ),
+    );
+  }
 }

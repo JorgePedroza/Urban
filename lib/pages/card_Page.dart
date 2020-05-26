@@ -17,15 +17,15 @@ class CardPages extends State<CardPage> {
     return ListView(
       padding: EdgeInsets.all(10),
       children: <Widget>[
-        //   _cardTipo1('assets/images.jpeg', 'Vergel chiveria', 'Azul',Colors.lightBlue),
-        // _cardTipo1('assets/ima1.jpeg', 'Bajadas', 'Azul',Colors.lightBlue),
-        // _cardTipo1('assets/ima2.jpeg', 'Reserva 1', 'verde', Colors.lightGreen),
-        // _cardTipo1('assets/ima3.jpg', 'Amapolas', 'Blanco/amarillo', Colors.yellowAccent),
-        //_cardTipo1('assets/ima4.jpg', 'Bolivar', 'Rojo', Colors.red),
-        //_cardTipo1('assets/ima5.jpeg', 'santa fe', 'verde', Colors.lightGreen),
-        //_cardTipo1('assets/images.jpeg', 'Vergel chiveria', 'Azul',Colors.lightBlue),
-        // _cardTipo1('assets/ima1.jpeg', 'Bajadas', 'Azul',Colors.lightBlue),
-        // _cardTipo1('assets/ima3.jpg', 'Amapolas', 'Blanco/amarillo', Colors.yellow),
+           _cardTipo1('assets/images.jpeg', 'Vergel chiveria', 'Azul',Colors.lightBlue),
+         _cardTipo1('assets/ima1.jpeg', 'Bajadas', 'Azul',Colors.lightBlue),
+         _cardTipo1('assets/ima2.jpeg', 'Reserva 1', 'verde', Colors.lightGreen),
+         _cardTipo1('assets/ima3.jpg', 'Amapolas', 'Blanco/amarillo', Colors.yellowAccent),
+        _cardTipo1('assets/ima4.jpg', 'Bolivar', 'Rojo', Colors.red),
+        _cardTipo1('assets/ima5.jpeg', 'santa fe', 'verde', Colors.lightGreen),
+        _cardTipo1('assets/images.jpeg', 'Vergel chiveria', 'Azul',Colors.lightBlue),
+         _cardTipo1('assets/ima1.jpeg', 'Bajadas', 'Azul',Colors.lightBlue),
+         _cardTipo1('assets/ima3.jpg', 'Amapolas', 'Blanco/amarillo', Colors.yellow),
         _cardTipo1(
             'assets/images.jpeg', 'Vergel chiveria', 'Azul', Colors.lightBlue),
         _cardTipo1('assets/ima4.jpg', 'Bolivar', 'Rojo', Colors.red),
@@ -62,11 +62,11 @@ class CardPages extends State<CardPage> {
                   title: Text(titulo),
                   subtitle: Text('Color dominante:$color'),
                   onTap: () {
-                    setState(() {
+                  
                       pm.createPoints();
                       widget.function();
                      
-                    });
+                    
                   },
                 ),
               ),
