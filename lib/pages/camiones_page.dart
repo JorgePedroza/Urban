@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:urbanbus/pages/bloc/repository.dart';
 import 'package:urbanbus/pages/card_Page.dart';
+import 'package:urbanbus/pages/lugares_page.dart';
 
 class CamionesPage extends StatefulWidget {
   final Function function;
@@ -13,7 +14,7 @@ class CamionesPage extends StatefulWidget {
 class _CamionesPageState extends State<CamionesPage> {
   final GlobalKey<_CamionesPageState> _key = GlobalKey();
   Repository repo = Repository();
-
+   int paginaActual;
   int i = 1;
 
   @override
@@ -21,7 +22,9 @@ class _CamionesPageState extends State<CamionesPage> {
     List<Widget> f = new List();
 
     List<Widget> _tap() {
-      f.add(Tab(icon: Icon(Icons.directions_bus)));
+      f.add(
+        
+        Tab(icon: Icon(Icons.directions_bus)));
       if (repo.get() == 3) {
         i = 2;
         f.add(Tab(
@@ -45,17 +48,37 @@ class _CamionesPageState extends State<CamionesPage> {
               color: Colors.blueGrey,
             ),
             automaticallyImplyLeading: false,
-            bottom: TabBar(tabs: _tap()),
+            bottom: TabBar(tabs: _tap(),onTap: (i){
+              setState(() {
+                 paginaActual = i;
+              });
+             
+            },),
           ),
         ),
-        body: CardPage(
-          key: _key,
-          function: methodInParent,
-        ),
+        body: _callPage(paginaActual),
       ),
     );
   }
+ Widget _callPage( int paginaActual ) {
 
+    switch( paginaActual ) {
+
+      case 0: return CardPage(
+          key: _key,
+          function: methodInParent,
+        );
+      case 1: return LugaresPage();
+
+      default:
+        return CardPage(
+          key: _key,
+          function: methodInParent,
+        );
+    }
+    
+
+  }
   methodInParent() {
     widget.function();
   }
