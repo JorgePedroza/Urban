@@ -27,6 +27,7 @@ dependencies:
   location: ^3.0.0
   keyboard_visibility: ^0.5.6
   mysql1: ^0.17.1
+  flutter_plugin_pdf_viewer: ^1.0.7
 
 dev_dependencies:
   flutter_test:
