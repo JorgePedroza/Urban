@@ -9,18 +9,18 @@ class LugaresPage extends StatelessWidget {
 
 body: Column(children: <Widget>[
   SizedBox(height: 10,),
- _cardTipo1('assets/v1.jpg', 'San Juan de Ulua', ),
-  _cardTipo1('assets/v2.jpg', 'Museo Naval', ),
-   _cardTipo1('assets/v3.jpg', 'Palacio Municipal', ),
-   _cardTipo1('assets/v1.jpg', 'San Juan de Ulua', ),
-  _cardTipo1('assets/v2.jpg', 'Museo Naval', ),
-   _cardTipo1('assets/v3.jpg', 'Palacio Municipal', ),
+ _cardTipo1('assets/v1.jpg', 'San Juan de Ulua', context ),
+  _cardTipo1('assets/v2.jpg', 'Museo Naval', context),
+   _cardTipo1('assets/v3.jpg', 'Palacio Municipal', context),
+   _cardTipo1('assets/v1.jpg', 'San Juan de Ulua', context ),
+  _cardTipo1('assets/v2.jpg', 'Museo Naval', context ),
+   _cardTipo1('assets/v3.jpg', 'Palacio Municipal', context ),
 
 ],) ,
     );
   }
   Widget _cardTipo1(
-      String assets, String titulo, ) {
+      String assets, String titulo, BuildContext context ) {
     return Card(
       color: Colors.grey,
       elevation: 10.0,
@@ -46,7 +46,7 @@ body: Column(children: <Widget>[
                   title: Text(titulo),
                   onTap: () {
                     
-                    
+                    Navigator.pushNamed(context, 'detalles');
                      
                     
                   },

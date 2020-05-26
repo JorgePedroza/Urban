@@ -21,7 +21,7 @@ class _MapPage extends State<MapPage> {
   final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
   final GlobalKey<_MapPage> _key = GlobalKey();
   Completer<GoogleMapController> _controller = Completer();
-  Repository _repo = Repository();
+   Repository _repo = Repository();
   PuntosMap pm = PuntosMap();
 
   @override

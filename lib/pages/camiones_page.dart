@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:urbanbus/pages/bloc/repository.dart';
 import 'package:urbanbus/pages/card_Page.dart';
+import 'package:urbanbus/pages/descripcion_lugar_page.dart';
 import 'package:urbanbus/pages/lugares_page.dart';
+
 
 class CamionesPage extends StatefulWidget {
   final Function function;
-  CamionesPage({Key key, this.function}) : super(key: key);
+
+  CamionesPage({Key key, this.function }) : super(key: key);
 
   @override
   _CamionesPageState createState() => _CamionesPageState();
@@ -14,8 +17,8 @@ class CamionesPage extends StatefulWidget {
 class _CamionesPageState extends State<CamionesPage> {
   final GlobalKey<_CamionesPageState> _key = GlobalKey();
   Repository repo = Repository();
-   int paginaActual;
-  int i = 1;
+  static int paginaActual;
+ static int i = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +77,9 @@ setState(() {
         );
       case 1: return LugaresPage();
 
+      case 2: return DetallesLugarPage();
+
+
       default:
         return CardPage(
           key: _key,
@@ -84,6 +90,11 @@ setState(() {
 
   }
   methodInParent() {
+    print('hola');
     widget.function();
   }
+
+    
+  
+  
 }
